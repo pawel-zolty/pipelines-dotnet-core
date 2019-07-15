@@ -17,8 +17,14 @@ steps:
 #   inputs:
 #     version: '2.2.300' # replace this value with the version that you need for your project
 
+- task: AzureRmWebAppDeployment@3
+  inputs:
+    azureSubscription: 'BudgetAppARMServiceConnection'
+    WebAppName: 'HomeBudgetApp'
+    Package: $(System.ArtifactsDirectory)/**/*.zip
+
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: 'Build with $(testVault)'
   inputs:
     command: build
     projects: '**/*.csproj'
