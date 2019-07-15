@@ -21,7 +21,6 @@ steps:
   inputs:
     azureSubscription: 'BudgetAppARMServiceConnection'
     WebAppName: 'HomeBudgetApp'
-    Package: $(System.ArtifactsDirectory)/**/*.zip
 
 - task: DotNetCoreCLI@2
   displayName: 'Build with $(testVault)'
