@@ -48,5 +48,5 @@ steps:
     azureSubscription: 'BudgetAppARMServiceConnection'
     WebAppName: 'HomeBudgetApp'
 
-- script: dotnet --version
+- script: echo $(filesizecounter)
   displayName: 'version $(testVault)'
