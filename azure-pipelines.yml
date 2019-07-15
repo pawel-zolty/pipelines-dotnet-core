@@ -17,13 +17,8 @@ steps:
 #   inputs:
 #     version: '2.2.300' # replace this value with the version that you need for your project
 
-- task: AzureRmWebAppDeployment@3
-  inputs:
-    azureSubscription: 'BudgetAppARMServiceConnection'
-    WebAppName: 'HomeBudgetApp'
-
 - task: DotNetCoreCLI@2
-  displayName: 'Build with $(testVault)'
+  displayName: Build
   inputs:
     command: build
     projects: '**/*.csproj'
@@ -47,3 +42,11 @@ steps:
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+
+- task: AzureRmWebAppDeployment@3
+  inputs:
+    azureSubscription: 'BudgetAppARMServiceConnection'
+    WebAppName: 'HomeBudgetApp'
+
+- script: dotnet --version
+  displayName: 'version $(testVault)'
